@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <link rel="icon" href="https://lh3.googleusercontent.com/XXypF-CSV_R4bniF8pZk8O-PzrVhRF5i_PvX5PuHtF-DgLldwXfAqnIP4QVfL6bNJzc">
+        <link rel="stylesheet" href="style.css">
+        <title>Yummy Food Recipes</title>
+    </head>
+    <body style="font-family:'Times New Roman', Times, serif;font-size: 20px;">
+        <nav class="navbar bg-body-tertiary p-3 sticky-top">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1">Yummy</span>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-5 m-0 p-0">
+                <img id="recipeimg" src="" alt="">
+            </div>
+            <div class="col-lg-7 m-0 p-3">
+                <h1 class="text-center" id="recipename"></h1>
+                <p id="ingredients"></p>
+                <p id="preptime"></p>
+                <p id="cooktime"></p>
+                <p id="servings"></p>
+                <p id="cuisine"></p>
+                <p id="calories"></p>
+            </div>
+        </div>
+
+        <div class="p-3" id="instructions"></div>
+
+</body>
+<script>
+    var id=localStorage.getItem("id")
+    var recipes = JSON.parse(localStorage.getItem("recipes"))
+     selecteditem = recipes.find(item=>item.id==id)
+     document.getElementById("recipeimg").src=selecteditem.image;
+     document.getElementById("recipename").textContent= selecteditem.name
+     var ingredients='INGREDIENTS : '
+    selecteditem.ingredients.forEach(item=>ingredients+=item+", ")
+    ingredients= ingredients.slice(0,-1)
+    document.getElementById("ingredients").textContent = ingredients
+    document.getElementById("preptime").textContent = "PREP-TIME IN MINUTES : "+ selecteditem.prepTimeMinutes
+    document.getElementById("cooktime").textContent = "COOK-TIME IN MINUTES : "+ selecteditem.cookTimeMinutes
+    document.getElementById("servings").textContent = "SERVINGS : "+ selecteditem.servings
+    document.getElementById("cuisine").textContent = "CUISINE : "+ selecteditem.cuisine
+    document.getElementById("calories").textContent = "CALORIES PER SERVING : "+ selecteditem.caloriesPerServing
+    document.getElementById("instructions").textContent = "INSTRUCTIONS : "+ selecteditem.instructions
+    
+</script>
+</html>
